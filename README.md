@@ -1,2 +1,3 @@
-# PostgreSQLDBConnercion
-PostgreSQL과 DB연결 정리
+# 각종 로그인 처리,
+
+## 로그인 연동.
