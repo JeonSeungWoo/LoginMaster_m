@@ -42,8 +42,8 @@ public class DBTest {
 	//8버전 부터 driver name이 변경 되었고 Timezone을 설정하도록 변경 되었다. (&amp;   ==   &  랑 같고 xml에서는 &을 읽지 못한다.)
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	Connection con = DriverManager.getConnection(
-	"jdbc:mysql://localhost:3306/foodmap?useSSL=false&serverTimezone=Asia/Seoul",
-	"woo",
+	"jdbc:mysql://localhost:3306/login?useSSL=false&serverTimezone=Asia/Seoul",
+	"root",
 	"1234");
 	System.out.println(con);
 	con.close();

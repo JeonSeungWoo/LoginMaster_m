@@ -21,6 +21,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
+	<beans:bean id="authenticationInterceptor" class="org.woo.web.login.interceptor.LoginIntercerter">
+    </beans:bean>
+    <!-- Interceptor 설정 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/login/success"/>
+            <beans:ref bean="authenticationInterceptor"/>
+        </interceptor>
+    </interceptors>
+	
+	
 	<context:component-scan base-package="org.woo.web" />
 	
 	
