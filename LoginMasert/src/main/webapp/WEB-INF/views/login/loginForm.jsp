@@ -75,6 +75,8 @@
 <body>
 
     <form id="form">
+    <div><a href="/">홈으로</a></div>
+    
         <div id="mainDiv">
             <div id="loginMain">
                 <!-- <i class="fas fa-sign-in-alt" style="font-size: 250px;"></i> -->

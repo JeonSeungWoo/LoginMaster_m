@@ -7,6 +7,8 @@
 <title>success</title>
 </head>
 <body>
+<h1>성공입니다.</h1>
 
+<a href="/login/logout">로그아웃</a>
 </body>
 </html>

@@ -30,7 +30,7 @@
 <script type="text/javascript">
 
 function simpleLoginMove(){
-	location.href = "/login/lognForm";
+	location.href = "/login/loginForm";
 }
 
 </script>
