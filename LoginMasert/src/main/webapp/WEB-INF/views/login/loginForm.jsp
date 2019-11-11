@@ -90,7 +90,7 @@
 
                 <div class="loginbutton_box ">
                     <button type="submit" class="btn-blue" id="loginBtn">로그인</button>
-                    <button type="button" class="btn-blue" id="idInsertBtn">회원가입</button>
+                    <button type="button" class="btn-blue" id="insertBtn">회원가입</button>
                 </div>
             </div>
         </div>
@@ -116,8 +116,8 @@
             });
 
 
-            $("#idInsertBtn").on("click", function () {
-                form.attr("action", "idInsertForm").attr("method", "GET").submit();
+            $("#insertBtn").on("click", function () {
+                form.attr("action", "insertForm").attr("method", "GET").submit();
             });
 
         });

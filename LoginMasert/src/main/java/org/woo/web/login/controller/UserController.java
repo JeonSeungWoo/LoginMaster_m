@@ -16,51 +16,46 @@ public class UserController {
 	@Inject
 	UserService service;
 
-	// ·Î±×ÀÎ ÆûÀ» ¶ç¿ì´Â ºÎºÐ
+	// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½
 	@RequestMapping(value = "/loginForm", method = RequestMethod.GET)
 	public String loginForm() {
-		return "login/loginForm"; // /login/loginForm.jsp¸¦ ¶ç¿ò.
+		return "login/loginForm"; // /login/loginForm.jspï¿½ï¿½ ï¿½ï¿½ï¿½.
 	}// end of loginForm
 
 	
-	// ¼º°ø
-	@RequestMapping(value = "/success", method = RequestMethod.GET)
-	public String success() {
-		return "success/success"; 
-	}
-	
-	
-	// ·Î±×ÀÎ Ã³¸®ÇÏ´Â ºÎºÐ
+	// ï¿½ï¿½ï¿½ï¿½
+
+	// ï¿½Î±ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Îºï¿½
 	@RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
 	public String loginProcess(HttpSession session, UserVO dto) throws Exception {
 		
 		
 		String returnURL = "";
 		if (session.getAttribute("login") != null) {
-			// ±âÁ¸¿¡ loginÀÌ¶õ ¼¼¼Ç °ªÀÌ Á¸ÀçÇÑ´Ù¸é
-			session.removeAttribute("login"); // ±âÁ¸°ªÀ» Á¦°ÅÇØ ÁØ´Ù.
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ loginï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½
+			session.removeAttribute("login"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½.
 		}
 
-        // ·Î±×ÀÎÀÌ ¼º°øÇÏ¸é UserVO °´Ã¼¸¦ ¹ÝÈ¯ÇÔ.
+        // ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ UserVO ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½.
 		UserVO vo = service.login(dto);
 		
-		if (vo != null) { // ·Î±×ÀÎ ¼º°ø
-			session.setAttribute("login", vo); // ¼¼¼Ç¿¡ loginÀÎÀÌ¶õ ÀÌ¸§À¸·Î UserVO °´Ã¼¸¦ ÀúÀåÇØ ³ð.
-			returnURL = "redirect:/login/success"; // ·Î±×ÀÎ ¼º°ø½Ã °Ô½Ã±Û ¸ñ·ÏÆäÀÌÁö·Î ¹Ù·Î ÀÌµ¿ÇÏµµ·Ï ÇÏ°í
-		} else { // ·Î±×ÀÎ¿¡ ½ÇÆÐÇÑ °æ¿ì
-			returnURL = "redirect:/login/loginForm"; // ·Î±×ÀÎ ÆûÀ¸·Î ´Ù½Ã °¡µµ·Ï ÇÔ
+		if (vo != null) { // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			session.setAttribute("login", vo); // ï¿½ï¿½ï¿½Ç¿ï¿½ loginï¿½ï¿½ï¿½Ì¶ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ UserVO ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
+			returnURL = "redirect:/success/success"; // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ìµï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï°ï¿½
+		} else { // ï¿½Î±ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+			returnURL = "redirect:/login/loginForm"; // ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		}
 		
 		
-		return returnURL; // À§¿¡¼­ ¼³Á¤ÇÑ returnURL À» ¹ÝÈ¯ÇØ¼­ ÀÌµ¿½ÃÅ´
+		return returnURL; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ returnURL ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ø¼ï¿½ ï¿½Ìµï¿½ï¿½ï¿½Å´
 	}
 
-	// ·Î±×¾Æ¿ô ÇÏ´Â ºÎºÐ
+	// ï¿½Î±×¾Æ¿ï¿½ ï¿½Ï´ï¿½ ï¿½Îºï¿½
 	@RequestMapping(value = "/logout")
 	public String logout(HttpSession session) {
-		session.invalidate(); // ¼¼¼Ç ÀüÃ¼¸¦ ³¯·Á¹ö¸²
-		// session.removeAttribute("login"); // ÇÏ³ª¾¿ ÇÏ·Á¸é ÀÌ·¸°Ô ÇØµµ µÊ.
-		return "redirect:/login/loginForm"; // ·Î±×¾Æ¿ô ÈÄ °Ô½Ã±Û ¸ñ·ÏÀ¸·Î ÀÌµ¿ÇÏµµ·Ï...ÇÔ
+		session.invalidate(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		// session.removeAttribute("login"); // ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Øµï¿½ ï¿½ï¿½.
+		return "redirect:/login/loginForm"; // ï¿½Î±×¾Æ¿ï¿½ ï¿½ï¿½ ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ïµï¿½ï¿½ï¿½...ï¿½ï¿½
 	}
 
 }
