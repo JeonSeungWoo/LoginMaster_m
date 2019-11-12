@@ -19,5 +19,19 @@ public class UserDAOImpl implements UserDAO{
 		return session.selectOne("user.login",vo);
 	}
 
+
+	@Override
+	public void loginCreate(UserVO vo) throws Exception {
+		
+		session.insert("user.loginCreate",vo);
+		
+	}
+
+
+	@Override
+	public int checkId(UserVO vo) throws Exception {
+		return session.selectOne("user.checkId",vo);
+	}
+
 	
 }

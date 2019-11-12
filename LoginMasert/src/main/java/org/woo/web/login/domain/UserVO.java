@@ -3,11 +3,20 @@ package org.woo.web.login.domain;
 public class UserVO {
 	private String userid;
 	private String userpw;
-	private String usernm="1";
-	private String email ="1";
-	private String address ="1";
+	private String usernm;
+	private String email;
+	private String address;
+	private String phonenumber;
 	
 	
+	
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
 	public String getAddress() {
 		return address;
 	}
@@ -41,8 +50,9 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "UserVO [userid=" + userid + ", userpw=" + userpw + ", usernm=" + usernm + ", email=" + email
-				+ ", address=" + address + "]";
+				+ ", address=" + address + ", phonenumber=" + phonenumber + "]";
 	}
+
 
 	
 }

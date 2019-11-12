@@ -1,15 +1,21 @@
-drop table tbl_login;
+drop table simpleLogin;
 
-CREATE TABLE tbl_login(
+CREATE TABLE simpleLogin(
 userId varchar(200) primary key,
 userPw varchar(600),
 userNm varchar(200),
 email varchar(300),
-address varchar(200)
+address varchar(200),
+phoneNumber varchar(12)
 );
 
 
-select * from tbl_login;
+select * from simpleLogin;
 
-insert into tbl_login( userId,userPw,userNm,email,address)
-values ('id','pw','nm','email','address');
+insert into simpleLogin( userId,userPw,userNm,email,address,phoneNumber)
+values ('id','pw','nm','email','address','01099822815');
+
+
+
+
+

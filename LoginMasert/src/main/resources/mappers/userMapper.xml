@@ -6,9 +6,22 @@
 <mapper namespace="user">
 
 	<select id="login" resultType="UserVO">
-		select * from tbl_login
-		where userid = #{userid}
+		select * from simplelogin
+		where
+		userid = #{userid}
 		and userpw = #{userpw}
 	</select>
+
+	<insert id="loginCreate" parameterType="UserVO">
+	insert into simpleLogin( userId,userPw,userNm,email,address,phoneNumber)
+           values (#{userid},#{userpw},#{usernm},#{email},#{address},#{phonenumber})
+	
+	</insert>
+
+
+     <select id="checkId" resultType="java.lang.Integer">
+        select count(*) from simplelogin where userid = #{userid}
+      </select>
+     
 </mapper> 
 
