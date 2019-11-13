@@ -4,12 +4,18 @@
 
 
 <mapper namespace="user">
-
-	<select id="login" resultType="UserVO">
+<!--시큐리티 이전  -->
+<!-- 	<select id="login" resultType="UserVO">
 		select * from simplelogin
 		where
 		userid = #{userid}
 		and userpw = #{userpw}
+	</select> -->
+	<!--시큐리티 -->
+	<select id="login" resultType="UserVO">
+		select * from simplelogin
+		where
+		userid = #{userid}
 	</select>
 
 	<insert id="loginCreate" parameterType="UserVO">

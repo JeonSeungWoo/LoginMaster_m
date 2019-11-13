@@ -8,9 +8,6 @@ public class UserVO {
 	private String address;
 	private String phonenumber;
 	
-	
-	
-
 	public String getPhonenumber() {
 		return phonenumber;
 	}

@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="loginbutton_box ">
-                    <button type="submit" class="btn-blue" id="loginBtn">로그인</button>
+                    <button type="button" class="btn-blue" id="loginBtn">로그인</button>
                     <button type="button" class="btn-blue" id="insertBtn">회원가입</button>
                 </div>
             </div>
@@ -85,13 +85,14 @@
 
 
     <!-- JS -->
-    <script src="/resources/js/jquery-1.11.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
             var form = $("#form");
 
             $("#loginBtn").on("click", function () {
+            	
                 form.attr("action", "loginProcess").attr("method", "POST").submit();
             });
 
