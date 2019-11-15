@@ -46,5 +46,18 @@
 			ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<!-- FaceBook  -->
+	  <bean id="connectionFactory"
+        class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+        <constructor-arg value="1135903910133386" />
+        <constructor-arg value="ffceb38c2e23aca5027429ba67c7f9ab" />
+    </bean>
+ 
+    <bean id="oAuth2Parameters"
+        class="org.springframework.social.oauth2.OAuth2Parameters">
+        <property name="scope" value="email" />
+        <property name="redirectUri" value="http://localhost/interLogin/facebookSignInCallback" />
+    </bean>
+	
     <context:component-scan base-package="org.woo.web" /> 
 </beans>
