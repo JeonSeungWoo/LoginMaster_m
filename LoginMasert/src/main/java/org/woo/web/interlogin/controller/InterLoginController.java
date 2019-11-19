@@ -27,84 +27,74 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class InterLoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(InterLoginController.class);
-	
+
 	// 페이스북 oAuth 관련
-    @Autowired
-    private FacebookConnectionFactory connectionFactory;
-    @Autowired
-    private OAuth2Parameters oAuth2Parameters;
-	
-	
+	@Autowired
+	private FacebookConnectionFactory connectionFactory;
+	@Autowired
+	private OAuth2Parameters oAuth2Parameters;
+
 	@RequestMapping(value = "/interLoginForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String interLoginForm(HttpServletResponse response, Model model) {
-		   OAuth2Operations oauthOperations = connectionFactory.getOAuthOperations();
-	        String facebook_url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, oAuth2Parameters);
-	        model.addAttribute("facebook_url", facebook_url);
-	        System.out.println("/facebook" + facebook_url);
+		OAuth2Operations oauthOperations = connectionFactory.getOAuthOperations();
+		String facebook_url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, oAuth2Parameters);
+
+		model.addAttribute("facebook_url", facebook_url);
+		System.out.println("facebook : " + facebook_url);
 		return "interLogin/interLoginForm";
 	}
-	
-	
-	
-	
-	//js로 구현.
+
+	// js로 구현.
 	@RequestMapping(value = "/interLoginForm2", method = { RequestMethod.GET, RequestMethod.POST })
 	public String interLoginForm2(HttpServletResponse response, Model model) {
-		
+
 		return "interLogin/interLoginForm2";
 	}
-	
-	
-	
-	
-	 @RequestMapping(value = "/facebookSignInCallback", method = { RequestMethod.GET, RequestMethod.POST })
-	    public String facebookSignInCallback(@RequestParam String code) throws Exception {
-	 
-	        try {
-	             String redirectUri = oAuth2Parameters.getRedirectUri();
-	            System.out.println("Redirect URI : " + redirectUri);
-	            System.out.println("Code : " + code);
-	 
-	            OAuth2Operations oauthOperations = connectionFactory.getOAuthOperations();
-	            AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, redirectUri, null);
-	            String accessToken = accessGrant.getAccessToken();
-	            System.out.println("AccessToken: " + accessToken);
-	            Long expireTime = accessGrant.getExpireTime();
-	        
-	            
-	            if (expireTime != null && expireTime < System.currentTimeMillis()) {
-	                accessToken = accessGrant.getRefreshToken();
-	                logger.info("accessToken is expired. refresh token = {}", accessToken);
-	            };
-	            
-	        
-	            Connection<Facebook> connection = connectionFactory.createConnection(accessGrant);
-	            Facebook facebook = connection == null ? new FacebookTemplate(accessToken) : connection.getApi();
-	            UserOperations userOperations = facebook.userOperations();
-	            
-	            try
-	 
-	            {            
-	                String [] fields = { "id", "email",  "name"};
-	                User userProfile = facebook.fetchObject("me", User.class, fields);
-	                System.out.println("유저이메일 : " + userProfile.getEmail());
-	                System.out.println("유저 id : " + userProfile.getId());
-	                System.out.println("유저 name : " + userProfile.getName());
-	                
-	            } catch (MissingAuthorizationException e) {
-	                e.printStackTrace();
-	            }
-	 
-	        
-	        } catch (Exception e) {
-	 
-	            e.printStackTrace();
-	 
-	        }
-	        return "redirect:/success/success";
-	 
-	    }
 
-	
+	@RequestMapping(value = "/facebookSignInCallback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String facebookSignInCallback(@RequestParam String code) throws Exception {
+
+		try {
+			String redirectUri = oAuth2Parameters.getRedirectUri();
+			System.out.println("Redirect URI : " + redirectUri);
+			System.out.println("Code : " + code);
+
+			OAuth2Operations oauthOperations = connectionFactory.getOAuthOperations();
+
+			AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, redirectUri, null);
+			String accessToken = accessGrant.getAccessToken();
+			System.out.println("AccessToken: " + accessToken);
+			Long expireTime = accessGrant.getExpireTime();
+
+			if (expireTime != null && expireTime < System.currentTimeMillis()) {
+				accessToken = accessGrant.getRefreshToken();
+				logger.info("accessToken is expired. refresh token = {}", accessToken);
+			};
+
+			Connection<Facebook> connection = connectionFactory.createConnection(accessGrant);
+			
+			
+			
+			Facebook facebook = connection == null ? new FacebookTemplate(accessToken) : connection.getApi();
+			
+			System.out.println("con 1 : " + new FacebookTemplate(accessToken).toString());
+			System.out.println("con 2 : " + connection.getApi().toString());
+			
+			UserOperations userOperations = facebook.userOperations();
+			System.out.println("userOP : "  + userOperations.toString());
+			
+			User userProfile = facebook.fetchObject("me", User.class);
+			System.out.println("유저이메일 : " + userProfile.getEmail());
+			System.out.println("유저 id : " + userProfile.getId());
+			System.out.println("유저 name : " + userProfile.getName());
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+		return "redirect:/success/success";
+
+	}
 
 }

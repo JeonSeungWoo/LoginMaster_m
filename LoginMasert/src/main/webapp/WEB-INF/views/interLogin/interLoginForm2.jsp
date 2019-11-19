@@ -11,15 +11,18 @@
 
 <!--구글  -->
  <meta name="google-signin-client_id" content="565923680914-o1pn5dogs41ctdmbcfrrt0aqcrm5047c.apps.googleusercontent.com">
- <script src="https://apis.google.com/js/platform.js" async defer></script>
+ <script src="https://apis.google.com/j<span class="_8jan"></span>s/platform.js" async defer></script>
  <!--페이스북  -->
- <div id="fb-root"></div>
+  <script src="https://connect.facebook.net/en_US/all.js"></script>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v5.0&appId=1135903910133386&autoLogAppEvents=1"></script>
+
 
 <body>
 
                 
-                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                    <a href="#" onclick="signOut();">로그아웃</a>
+     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+     <a href="#" onclick="signOut();">로그아웃</a>
           
 <br>
 
@@ -29,14 +32,19 @@
 </fb:login-button>
 
 
+<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="true" data-use-continue-as="false"></div>
+
 <div id="status">
 </div>
 
-<button id="logout">로그아웃</button>
+<button id="fbLogOut">로그아웃12</button>
 
 
-
+  <fb:login-button autologoutlink="true" perms=""></fb:login-button>
           
+          
+          
+ 
           
 <!--구글  ------------------  -->
 <!--googleLogin  -->
@@ -75,7 +83,7 @@
     		  console.log('user signed out.'); 
     	  });
     	  auth.disconnect();
-    	  location.href = '/interLogin/interLoginForm';
+    	  location.href = '/interLogin/interLoginForm2';
       }
       
       
@@ -134,14 +142,14 @@
     });
   }
 
-  $("#logout").on("click",function(){
-	  FB.logout();
-	  alert("로그아웃 되었습니다.");
-	  FB.logout(function(response) {
-		   // Person is now logged out
-		  alert("로그아웃 되었습니다.");
-		});
-    });
+  $('#fbLogOut').click(function(e){ 
+	     e.preventDefault();
+	     alert("1");
+	      FB.logout(function(response) {
+	    	  alert("시발개끼양");
+
+	        });
+	});
       
     </script>
 </body>
